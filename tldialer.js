@@ -12,7 +12,9 @@ tld.timeoutWorker.onmessage = function (e) {
     
     const { callback } = e.data;
 
-    if (typeof window[callback] === 'function') 
+    if( typeof callback === 'function' )
+        return callback();
+    else if ( typeof window[callback] === 'function' ) 
         return window[callback]();
     
     console.error(`Function ${callback} does not exist.`);
