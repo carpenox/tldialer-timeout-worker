@@ -39,3 +39,6 @@ with
 
 Which is around line 20483 depending on the version of VICI you have.
 
+Technically this code can be used to run any timer that exists in your scripts, just replace the all_refresh in the tld.setTimeoutWorker function with the name of your function. It will offset the timeout to the webworker.
+
+It's so simple it's stupid. 
