@@ -9,15 +9,17 @@ tld.timeoutWorker.onmessage = function (e) {
         tld.timeoutWorker.confirmed = 1;
         console.log( 'Using TLDialer Timeout WebWorker');
     }
+    
+    const { callback } = e.data;
 
-    const { id } = e.data;
+    if (typeof window[callback] === 'function') 
+        return window[callback]();
     
-    if (typeof window[id] === 'function') 
-        return window[id]();
-    
-    console.error(`Function ${id} does not exist.`);
+    console.error(`Function ${callback} does not exist.`);
 };
 
-tld.setTimeoutWorker = function(delay, id) {
-    tld.timeoutWorker.postMessage( { delay, id } );
+tld.setTimeoutWorker = function( callback, delay ) {
+    tld.timeoutWorker.postMessage( { callback, delay } );
 };
+
+window.setTimeout = tld.setTimeoutWorker;
