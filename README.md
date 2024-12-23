@@ -15,7 +15,7 @@ It's a purely JS solution, so there shouldn't be any extra load on the servers o
 
 # Instructions
 
-Put both tldialer.js and tldialer-timeout-worker.js in your `vicidial/agc` directory normally this is in `/srv/www/htdocs/agc`
+Put both tldialer.js and tldialer-timeout-worker.js in your `vicidial/agc` directory normally this is in `/srv/www/htdocs/agc` Make sure that tldialer-timeout-worker.js loads first.
 
 Add tldialer.js to load as the first script in your `<head>` `<script src="/agc/tldialer.js" type="text/javascript></script>`
 
