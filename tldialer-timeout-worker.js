@@ -1,7 +1,11 @@
-self.onmessage = (e) => {
-    const { delay, id } = e.data;
+self.onmessage = ( e ) => {
+    let { callback, delay } = e.data;
+    
+    if( typeof( callback ) === 'string' ){
+        callback = callback.replace( /\(\)$/, '' );
+    }
 
     setTimeout( () => {
-        self.postMessage( { id: id, delay: delay } );
+        self.postMessage( { callback: callback, delay: delay } );
     }, delay ); // Check again soon
 };
