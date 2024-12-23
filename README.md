@@ -23,7 +23,9 @@ Optionally, you can paste tldialer.js code within script tags `<script type="tex
 
 At Esotech / TLDCRM We have a custom injection loader for vicidial.php that does this automatically so we can avoid touching the core code. It basically grabs vicidial.php and does string replaces for the injections before serving the file, but it's not needed for this part of our mods.
 
-Replace the following line in vicidial.php
+If you have your Server Settings set to setTimeout, then you are done with the installation as the code replaces the native Browser windows' setTimeout with the WebWorker setTimeout.
+
+If you have your Server Settings for Agent Timer set to "Event Source", Replace the following line in vicidial.php
 
 ```
 		if(typeof(EventSource) !== "undefined")
@@ -33,7 +35,7 @@ with
 
 ```
 		if( tld.timeoutWorker instanceof Worker && typeof( tld.setTimeoutWorker ) === 'function' ){
-			tld.setTimeoutWorker( refresh_interval, 'all_refresh' );
+			tld.setTimeoutWorker( 'all_refresh', refresh_interval );
 		} else if(typeof(EventSource) !== 'undefined')
 ```
 
